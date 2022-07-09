@@ -54,13 +54,13 @@ int main() {
     val--, count++;
   }
 
-  // printf("\nGenerated matrix : \n\n");
-  // for (int r = 0; r < matrix_size; r++) {
-  //   for (int c = 0; c < matrix_size; c++) {
-  //     printf("%d  ", mat[r][c]);
-  //   }
-  //   printf("\n");
-  // }
+  printf("\nGenerated matrix : \n\n");
+  for (int r = 0; r < matrix_size; r++) {
+    for (int c = 0; c < matrix_size; c++) {
+      printf("%d  ", mat[r][c]);
+    }
+    printf("\n");
+  }
 
   fp = fopen("matrix_output.txt", "w");
   for (int r = 0; r < matrix_size; r++) {

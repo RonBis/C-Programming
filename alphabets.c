@@ -1,11 +1,10 @@
 #include <ctype.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #define STRING_LEN 100
-#define TRUE 1
-#define FALSE 0
 
 typedef struct alphabet_node {
   char alphabet;
@@ -53,11 +52,11 @@ int check_if_exists(char alphabet) {
   while (curr != NULL) {
     if (curr->alphabet == alphabet) {
       curr->count++;
-      return TRUE;
+      return true;
     }
     curr = curr->next;
   }
-  return FALSE;
+  return false;
 }
 
 int main() {
