@@ -22,10 +22,11 @@ char *read_string() {
 }
 
 int main(void) {
-  char *str;
+  FILE *fp;
+  char *str_to_be_deleted;
 
-  str = read_string();
-  printf("%s\n", str);
+  str_to_be_deleted = read_string();
+  fp = fopen("sample.txt", "w+");
 
   return 0;
 }
