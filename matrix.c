@@ -26,27 +26,19 @@ int main() {
   int num_iter = (matrix_size + 1) / 2;
   int count = 0, val = num_iter;
   while (count < num_iter) {
-    // printf("\n---- Iteration %d ----\n", count);
     int start = count, end = matrix_size - count - 1;
     for (int i = start; i <= end; i++) {
-
       if (i == start) {
-        // printf("element [%d][%d]\n", i, start);
         mat[i][i] = val;
       } else {
-        // printf("element [%d][%d]\n", i, start);
-        // printf("element [%d][%d]\n", start, i);
         mat[i][start] = mat[start][i] = val;
       }
     }
 
     for (int i = start + 1; i <= end; i++) {
       if (i == end) {
-        // printf("element [%d][%d]\n", i, end);
         mat[i][i] = val;
       } else {
-        // printf("element [%d][%d]\n", i, end);
-        // printf("element [%d][%d]\n", end, i);
         mat[i][end] = mat[end][i] = val;
       }
     }
