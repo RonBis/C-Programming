@@ -19,7 +19,7 @@ int recursiveFibboTerm(int n) {
   }
 }
 
-char *pushToString(int val) {
+void pushToString(int val) {
   char *val_str;
   static int insert_after_pos = -1;
 
