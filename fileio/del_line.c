@@ -15,7 +15,7 @@ char *read_string() {
     str_len++;
   }
 
-  str = realloc(str, str_len + 1);
+  str = realloc(str, (str_len + 1) * sizeof(char));
   *(str + str_len + 1) = '\0';
 
   return str;
@@ -23,10 +23,14 @@ char *read_string() {
 
 int main(void) {
   FILE *fp;
-  char *str_to_be_deleted;
+  char *str_to_be_deleted, ch;
 
-  str_to_be_deleted = read_string();
+  // str_to_be_deleted = read_string();
   fp = fopen("sample.txt", "w+");
+
+  while((ch == getc(fp)) != EOF) {
+    printf("%c", ch);
+  }
 
   return 0;
 }
