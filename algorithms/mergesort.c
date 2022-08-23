@@ -66,10 +66,10 @@ void mergesort(float arr[], int p, int r)
 
 int main()
 {
-  float arr[7] = {2.355, 4.5, 3.6, 2.12, 3.6, 6.4, 2.355};
-  // float arr[9] = {0, 10, 21, 47, 49, 8, 15, 20, 78};
+  // float arr[7] = {2.355, 4.5, 3.6, 2.12, 3.6, 6.4, 2.355};
+  float arr[9] = {0, 10, 21, 47, 49, 8, 15, 20, 78};
 
-  mergesort(arr, 0, 6);
-  // merge(arr, 0, 4, 8);
+  //mergesort(arr, 0, 6);
+  merge(arr, 0, 4, 8);
   return 0;
 }
