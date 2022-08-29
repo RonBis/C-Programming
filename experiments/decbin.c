@@ -18,18 +18,20 @@ int main() {
   printf("Enter decimal: ");
   scanf("%d", &num);
 
-  while (1) {
-    int pos = 0;
-    while ((num - pow_n(2, pos)) > 0) {
-      pos++;
+  if (num != 0) {
+    while (1) {
+      int pos = 0;
+      while ((num - pow_n(2, pos)) >= 0) {
+        pos++;
+      }
+      pos--;
+
+      bin += pow_n(10, pos);
+      num %= pow_n(2, pos);
+
+      if (num == 0)
+        break;
     }
-    pos--;
-
-    bin += pow_n(10, pos);
-    num %= pow_n(2, pos);
-
-    if (pos == -1)
-      break;
   }
 
   printf("Binary is: %d\n", bin);
