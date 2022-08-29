@@ -1,0 +1,13 @@
+{
+  "version": 4,
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": ["/usr/include"],
+      "intelliSenseMode": "linux-gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu17",
+      "cppStandard": "c++17"
+    }
+  ]
+}
