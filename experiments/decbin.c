@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 
 int pow_n(int base, int power) {
   if (power == 0) {
@@ -18,6 +19,9 @@ int main() {
   printf("Enter decimal: ");
   scanf("%d", &num);
 
+  struct timespec ts;
+  timespec_get(&ts, TIME_UTC);
+
   if (num != 0) {
     while (1) {
       int pos = 0;
@@ -33,6 +37,9 @@ int main() {
         break;
     }
   }
+  struct timespec ts2;
+  timespec_get(&ts2, TIME_UTC);
+  printf("%09ld\n\n", ts2.tv_nsec-ts.tv_nsec);
 
-  printf("Binary is: %d\n", bin);
+  // printf("Binary is: %d\n", bin);
 }
