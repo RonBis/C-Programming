@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define SIZE 7
+
 struct NODE {
   struct NODE *left_child;
   int data;
   struct NODE *right_child;
 };
 typedef struct NODE node;
+// enum BreakIn { LEFT, RIGHT };
 
 node *root = NULL;
 
@@ -18,35 +21,120 @@ void insert(int val) {
 
   node *tmp = root;
 
-  if(root == NULL) {
+  if (root == NULL) {
     root = leaf;
     return;
   }
-  while ((tmp->left_child != NULL && val < tmp->data) || (tmp->right_child != NULL && val > tmp->data)) {
-    if(val < tmp->data) {
+  while ((tmp->left_child != NULL && val < tmp->data) ||
+         (tmp->right_child != NULL && val >= tmp->data)) {
+    if (val < tmp->data) {
       tmp = tmp->left_child;
     } else {
       tmp = tmp->right_child;
     }
   }
 
-  if(val < tmp->data){
+  if (val < tmp->data) {
     tmp->left_child = leaf;
-  }else{
+  } else {
     tmp->right_child = leaf;
   }
 }
 
-void display() {
-  // code
+void traverseInorder(node *nd, FILE *fp) {
+  if (nd == NULL)
+    return;
+  else {
+    traverseInorder(nd->left_child, fp);
+    fprintf(fp, "%d\t", nd->data);
+    traverseInorder(nd->right_child, fp);
+  }
 }
 
-void delete () {
-  // code
+void traversePreorder(node *nd, FILE *fp) {
+  if (nd == NULL)
+    return;
+  else {
+    fprintf(fp, "%d\t", nd->data);
+    traversePreorder(nd->left_child, fp);
+    traversePreorder(nd->right_child, fp);
+  }
 }
+
+// void traversePostorder(node *nd) {
+//   if (nd != NULL) {
+//     if (nd->left_child != NULL) {
+//       traverseInorder(nd->left_child);
+//     }
+
+//     if (nd->right_child != NULL) {
+//       traverseInorder(nd->right_child);
+//     }
+
+//     printf("%d\t", nd->data);
+//   }
+// }
+
+void display() {
+  FILE *fp;
+  fp = fopen("testfile.txt", "a");
+
+  fprintf(fp, "%s", "Inorder > ");
+  traverseInorder(root, fp);
+  fprintf(fp, "%s", "\n");
+
+  fprintf(fp, "%s", "Preorder > ");
+  traversePreorder(root, fp);
+  fprintf(fp, "%s", "\n");
+  // traversePostorder(root);
+
+  printf("\n");
+  fclose(fp);
+}
+
+// void delete (int val) {
+//   if (val == root->data) {
+//     printf("\nCannot delete root node.");
+//     return;
+//   }
+
+//   enum BreakIn b;
+//   node *tmp = root;
+
+//   while ((tmp->left_child != NULL || tmp->right_child != NULL) &&
+//          tmp->data != val) {
+//     if (val < tmp->data) {
+//       if (tmp->left_child->data == val) {
+//         b = LEFT;
+//         break;
+//       }
+//       tmp = tmp->left_child;
+//     } else {
+//       if (tmp->right_child->data == val) {
+//         b = RIGHT;
+//         break;
+//       }
+//       tmp = tmp->right_child;
+//     }
+//   }
+
+//   if (b == LEFT) {
+//     tmp->left_child = tmp->left_child->left_child;
+//     tmp->right_child = tmp->left_child->right_child;
+//   } else {
+//     if (tmp->right_child->right_child != NULL) {
+//       node *tmp_left = tmp->right_child->left_child;
+
+//       tmp->right_child = tmp->right_child->right_child;
+//       tmp->right_child->left_child = tmp_left;
+//     } else {
+//       tmp->right_child = tmp->right_child->left_child;
+//     }
+//   }
+// }
 
 int main() {
-  // {10, 20, 30, 4, 17, 25, 31}
+  int arr[SIZE] = {14, 7, 4, 11, 13, 17, 53};
   printf("## Binary tree ##\n1) Insert, 2) Display, 3) Delete, 4) Exit\n\n");
 
   while (1) {
@@ -57,17 +145,25 @@ int main() {
     switch (choice) {
     case 1: {
       int val;
-      printf("Val to insert: ");
-      scanf("%d", &val);
-      insert(val);
+      // printf("Val to insert: ");
+      // scanf("%d", &val);
+      for (int i = 0; i < SIZE; i++) {
+        insert(arr[i]);
+      }
+
+      // insert(val);
       break;
     }
     case 2:
       display();
       break;
-    case 3:
-      delete ();
-      break;
+    // case 3: {
+    //   int val;
+    //   printf("Val to delete: ");
+    //   scanf("%d", &val);
+    //   delete (val);
+    //   break;
+    // }
     case 4:
       return 0;
     default:

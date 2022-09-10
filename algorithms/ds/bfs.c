@@ -16,7 +16,7 @@ int qfront = -1, qrear = -1;
 
 void enQueue(int id) {
   if (qrear == NODE_COUNT - 1)
-    printf("\nQueue is Full!!");
+    printf("\nQueue is Full");
   else {
     if (qfront == -1)
       qfront = 0;
@@ -51,14 +51,15 @@ int main() {
   printf("Number of nodes: ");
   scanf("%d", &NODE_COUNT);
 
-  adjacencyMatrix = (int **)calloc(NODE_COUNT * NODE_COUNT, sizeof(int));
+  adjacencyMatrix = (int **)calloc(NODE_COUNT, sizeof(int *));
   visited = (int *)calloc(NODE_COUNT, sizeof(int));
   queue = (node *)calloc(NODE_COUNT, sizeof(node));
 
-  printf("\nInsert adjacency matrix:");
+  printf("Insert adjacency matrix:\n");
   for (int i = 0; i < NODE_COUNT; i++) {
+    adjacencyMatrix[i] = (int *)calloc(NODE_COUNT, sizeof(int));
     for (int j = 0; j < NODE_COUNT; j++) {
-      printf("\n%d-%d: ", i, j);
+      printf("%d-%d: ", i, j);
       scanf("%d", &adjacencyMatrix[i][j]);
     }
   }
