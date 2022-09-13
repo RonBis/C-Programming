@@ -65,12 +65,6 @@ int main() {
   }
 
   printf("Enter starting node id: ");
-  scanf("%d", &queue[0].id);
-  queue[0].cost = globCost++;
-
-  visited[queue[0].id] = 1;
-  enQueue(0);
-  search(queue[0]);
 
   return 0;
 }
