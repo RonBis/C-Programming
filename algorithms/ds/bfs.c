@@ -21,31 +21,22 @@ void enQueue(int id) {
     if (qfront == -1)
       qfront = 0;
     qrear++;
-    queue[qrear] = (node){.id = id, .cost = globCost++};
-    printf("\nInserted -> %d", id);
+    queue[qrear] = (node){.id = id, .cost = ++globCost};
+    // printf("\nInserted -> %d", id);
   }
 }
 void deQueue() {
   if (qfront == -1)
     printf("\nQueue is Empty");
   else {
-    printf("\nDeleted : %d", queue[qfront].id);
+    // printf("\nDeleted -> %d", queue[qfront].id);
     qfront++;
     if (qfront > qrear)
       qfront = qrear = -1;
   }
 }
 
-void search(node src) {
-  for (int i = 0; i < NODE_COUNT; i++) {
-    if (adjacencyMatrix[src.id][i] == 1 && src.id != i && visited[i] != 1) {
-      printf("%d\t", src.id);
-      enQueue(i);
-      search(queue[i]);
-    }
-  }
-  deQueue(src);
-}
+
 
 int main() {
   printf("Number of nodes: ");
@@ -64,13 +55,9 @@ int main() {
     }
   }
 
-  printf("Enter starting node id: ");
+  printf("\nEnter starting node id: ");
   scanf("%d", &queue[0].id);
-  queue[0].cost = globCost++;
 
-  visited[queue[0].id] = 1;
-  enQueue(0);
-  search(queue[0]);
-
+  printf("\n");
   return 0;
 }
