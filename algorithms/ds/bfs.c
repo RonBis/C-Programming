@@ -36,8 +36,6 @@ void deQueue() {
   }
 }
 
-
-
 int main() {
   printf("Number of nodes: ");
   scanf("%d", &NODE_COUNT);

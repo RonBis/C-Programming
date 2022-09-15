@@ -9,7 +9,6 @@ struct NODE {
   struct NODE *right_child;
 };
 typedef struct NODE node;
-// enum BreakIn { LEFT, RIGHT };
 
 node *root = NULL;
 
@@ -91,47 +90,6 @@ void display() {
   printf("\n");
   fclose(fp);
 }
-
-// void delete (int val) {
-//   if (val == root->data) {
-//     printf("\nCannot delete root node.");
-//     return;
-//   }
-
-//   enum BreakIn b;
-//   node *tmp = root;
-
-//   while ((tmp->left_child != NULL || tmp->right_child != NULL) &&
-//          tmp->data != val) {
-//     if (val < tmp->data) {
-//       if (tmp->left_child->data == val) {
-//         b = LEFT;
-//         break;
-//       }
-//       tmp = tmp->left_child;
-//     } else {
-//       if (tmp->right_child->data == val) {
-//         b = RIGHT;
-//         break;
-//       }
-//       tmp = tmp->right_child;
-//     }
-//   }
-
-//   if (b == LEFT) {
-//     tmp->left_child = tmp->left_child->left_child;
-//     tmp->right_child = tmp->left_child->right_child;
-//   } else {
-//     if (tmp->right_child->right_child != NULL) {
-//       node *tmp_left = tmp->right_child->left_child;
-
-//       tmp->right_child = tmp->right_child->right_child;
-//       tmp->right_child->left_child = tmp_left;
-//     } else {
-//       tmp->right_child = tmp->right_child->left_child;
-//     }
-//   }
-// }
 
 int main() {
   int arr[SIZE] = {14, 7, 4, 11, 13, 17, 53};
