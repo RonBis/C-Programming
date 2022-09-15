@@ -1,6 +1,6 @@
 adjlist, visited = {}, []
 
-with open("./adjlist.txt", "r", encoding="utf-8") as f:
+with open("./adjlist.file", "r", encoding="utf-8") as f:
   for line in f:
     line = line.strip("\n")
     src, conns = line.split(":")
