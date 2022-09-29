@@ -102,7 +102,7 @@ int main() {
 
     switch (choice) {
     case 1: {
-      int val;
+      // int val;
       // printf("Val to insert: ");
       // scanf("%d", &val);
       for (int i = 0; i < SIZE; i++) {

@@ -1,6 +1,6 @@
 /*
-    C code to perform Fibonacci term printing with recursion and function
-   pointers
+  C code to perform Fibonacci term printing with recursion and function
+  pointers
 */
 
 #include <stdio.h>

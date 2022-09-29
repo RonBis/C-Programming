@@ -25,7 +25,7 @@ int main() {
   if (num != 0) {
     while (1) {
       int pos = 0;
-      while ((num - pow_n(2, pos)) >= 0) {
+      while ((num >= pow_n(2, pos))) {
         pos++;
       }
       pos--;
@@ -41,5 +41,5 @@ int main() {
   timespec_get(&ts2, TIME_UTC);
   printf("%09ld\n\n", ts2.tv_nsec-ts.tv_nsec);
 
-  // printf("Binary is: %d\n", bin);
+  printf("Binary is: %d\n", bin);
 }
