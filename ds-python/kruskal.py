@@ -1,6 +1,9 @@
-edgePairs: list[str] = []
-edgeWeights: list[int] = []
-vertset: list[str] = []
+from typing import List
+
+
+edgePairs: List[str] = []
+edgeWeights: List[int] = []
+vertset: List[str] = []
 
 def sortEdgePairs():
     for k in range(len(edgeWeights)):
@@ -34,14 +37,14 @@ with open("adjlist2.file", "r", encoding="utf-8") as f:
 
 sortEdgePairs()
 
-resultList: list[str] = []
-def partChecker(lst: list[str], pair: str):
+resultList: List[str] = []
+def partChecker(lst: List[str], pair: str):
     flag = False
     for item in lst:
         if pair in item:
             flag = True
             break
-    
+
     if flag is False:
         resultList.append(pair)
 
