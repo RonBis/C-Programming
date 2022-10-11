@@ -1,4 +1,13 @@
 *.txt
+
+# executables
 *.out
 
+# gcc intermediates
+*.o
+*.s
+*.i
+
+# folders
+assignment
 workspace
