@@ -112,9 +112,9 @@ int main() {
       // insert(val);
       break;
     }
-    case 2:
-      display();
-      break;
+    // case 2:
+    //   display();
+    //   break;
     // case 3: {
     //   int val;
     //   printf("Val to delete: ");
