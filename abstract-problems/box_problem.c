@@ -50,7 +50,7 @@ typedef struct Box box;
 
 float find_max_height(box *boxes, int N) {
   float max_height = 0;
-  for(int i = 0;i<N;i++) {
+  for (int i = 0; i < N; i++) {
     max_height += (boxes + i)->h;
   }
 
@@ -64,7 +64,7 @@ char *readfile(FILE *fp) {
 
   rewind(fp); // move pointer back to start
 
-  char *str = malloc(fsize + 1);
+  char *str = (char *)malloc(fsize + 1);
   fread(str, fsize, sizeof(char), fp);
   str[fsize] = '\0'; // terminate the string
 

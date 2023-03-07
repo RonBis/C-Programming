@@ -2,9 +2,7 @@
 
 int main(void) {
   FILE *fp_r, *fp_w;
-  char c;
-
-  fp_r = fopen("../sample.txt", "r");
+  fp_r = fopen("sample.txt", "r");
   fp_w = fopen("sample_output.txt", "w");
 
   fseek(fp_r, -1, SEEK_END);
