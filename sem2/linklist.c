@@ -91,6 +91,7 @@ void delFromEnd() {
 				head = NULL;
 				return;
 			}
+			prev->next = NULL;
 			break;
 		}
 		prev = cur;
@@ -154,4 +155,3 @@ int main() {
 	
 	return 0;
 }
-
