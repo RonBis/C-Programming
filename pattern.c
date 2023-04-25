@@ -7,9 +7,9 @@ int main() {
   printf("Enter size: ");
   scanf("%d", &m);
 
-  int **arr = (int **)malloc(sizeof(int *) * m);
+  int **arr = (int **)calloc(m, sizeof(int *));
   for (int i = 0; i < m; i++) {
-    int *row = (int *)malloc(sizeof(int) * m);
+    int *row = (int *)calloc(m, sizeof(int));
     *(arr + i) = row;
   }
 
@@ -19,16 +19,16 @@ int main() {
     int ringVal = levels - lvl + 1;
     int i, j;
 
-    for(i = lvl, j = lvl+1; j<=ringVal+1; j++) {
+    for (i = lvl, j = lvl + 1; j <= ringVal + 1; j++) {
       arr[i][j] = ringVal;
     }
-    for(i = ringVal+1, j=lvl; j<=ringVal; j++) {
+    for (i = ringVal + 1, j = lvl; j <= ringVal; j++) {
       arr[i][j] = ringVal;
     }
-    for(i = lvl+1, j=ringVal+1; i<=ringVal+1; i++) {
+    for (i = lvl + 1, j = ringVal + 1; i <= ringVal + 1; i++) {
       arr[i][j] = ringVal;
     }
-    for(i=lvl, j=lvl; i<=ringVal; i++) {
+    for (i = lvl, j = lvl; i <= ringVal; i++) {
       arr[i][j] = ringVal;
     }
   }
