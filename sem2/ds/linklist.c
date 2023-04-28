@@ -51,11 +51,11 @@ void insertAtPos() {
   printf("\nEnter position for new node: ");
   scanf("%d", &pos);
 
-	int node_count = count();
-	if(pos < 1 || pos > node_count + 1) {
-		printf("Index out of bound.\n");
-		return;
-	}
+  int node_count = count();
+  if (pos < 1 || pos > node_count + 1) {
+    printf("Index out of bound.\n");
+    return;
+  }
 
   if (pos == 1) {
     insertAtBeg();
@@ -68,9 +68,9 @@ void insertAtPos() {
       if (curr == pos - 1) {
         nd->next = tmp->next;
         tmp->next = nd;
-				break;
+        break;
       }
-			tmp = tmp->next;
+      tmp = tmp->next;
       curr++;
     }
   }
@@ -100,7 +100,7 @@ void delFromStart() {
   node *firstNode = head;
   head = head->next;
   free(firstNode);
-	printf("\n");
+  printf("\n");
 }
 
 void delFromEnd() {
@@ -130,6 +130,33 @@ void delFromEnd() {
   printf("\n");
 }
 
+void delFromPos() {
+  int pos;
+  printf("\nEnter position for deleting node: ");
+  scanf("%d", &pos);
+
+  int nodeCount = count();
+  if (pos < 1 || pos > nodeCount) {
+    printf("Given position is out of bound.\n");
+    return;
+  }
+
+  if (pos == 1) {
+    return delFromStart();
+  }
+
+  node *temp = head;
+  int counter = 1;
+  // play loop upto one place before the pos
+  while (counter < pos - 1) {
+    temp = temp->next;
+    counter++;
+  }
+  node *loc = temp->next;
+  temp->next = temp->next->next;
+  free(loc);
+}
+
 int main() {
   int choice;
 
@@ -142,7 +169,11 @@ int main() {
            "5. Count nodes\n"
            "6. Delete from start\n"
            "7. Delete from end\n"
-           "8. Exit\n");
+           "8. Delete at pos\n"
+           "9. Concatenate another linked list\n"
+           "10. Search element\n"
+           "11. Reverse linked list\n"
+           "12. Exit\n");
     scanf("%d", &choice);
 
     switch (choice) {
@@ -175,6 +206,10 @@ int main() {
       delFromEnd();
       break;
     case 8:
+      printf("--Delete from pos--");
+      delFromPos();
+      break;
+    case 12:
       exit(0);
     default:
       printf("Invalid option.\n");
