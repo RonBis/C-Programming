@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../testarr.h"
+
 void swap(int *prev, int *next) {
   int temp = *prev;
   *prev = *next;
@@ -45,7 +47,6 @@ void selectionSort(int arr[], int n) {
 }
 
 int main() {
-  int arr[] = {26, 4, 9, 23, 3, 25, 18};
   int size = (int)(sizeof(arr) / sizeof(arr[0]));
 
   int choice;
