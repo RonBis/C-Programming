@@ -4,13 +4,12 @@
         {
             "name": "Linux",
             "includePath": [
-                "/usr/include",
-                "/usr/lib/gcc/x86_64-linux-gnu/9/include"
+                "/usr/include"
             ],
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "c17",
-            "cppStandard": "c++17"
+            "cStandard": "c23",
+            "cppStandard": "c++23"
         }
     ]
 }
