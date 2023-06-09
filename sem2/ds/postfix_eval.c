@@ -5,7 +5,7 @@
 #define todigit(c) c - '0'
 
 typedef struct STACK {
-  int vals[20];
+  int *vals;
   int top;
 } stack;
 
@@ -32,7 +32,7 @@ int raiseToPow(int base, int pow) {
 
 int main() {
   char expression[20];
-  stack evalstack = (stack){.top = -1, .vals = {}};
+  stack evalstack = (stack){.top = -1, .vals = (int *)malloc(sizeof(int) * 20)};
 
   printf("Postfix expression: ");
   scanf("%s", &expression);
@@ -72,5 +72,6 @@ int main() {
   }
 
   printf("Evaluated value: %.2f\n", evaled);
+  free(evalstack.vals);
   return 0;
 }
