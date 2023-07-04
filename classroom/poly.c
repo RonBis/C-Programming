@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <wchar.h>
 
 #define MAXPOW 10
 
@@ -40,7 +41,11 @@ int getMaxPow(char prompt[]) {
 void display(poly *head) {
   poly *tmp = head;
   while (tmp != NULL) {
-    printf("%dx^%d + ", tmp->coeff, tmp->pow);
+    printf("%d", tmp->coeff);
+    if (tmp->next != NULL) {
+      printf("x^%d", tmp->pow);
+      printf(" + ");
+    }
     tmp = tmp->next;
   }
   printf("\n");
@@ -69,7 +74,7 @@ int main() {
     sum = term;
 
     p1 = p1->next;
-    p2 = p2->next; 
+    p2 = p2->next;
   }
 
   if (p1 == NULL && p2 == NULL) {
