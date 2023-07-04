@@ -69,7 +69,7 @@ int main() {
     sum = term;
 
     p1 = p1->next;
-    p2 = p2->next;
+    p2 = p2->next; 
   }
 
   if (p1 == NULL && p2 == NULL) {
