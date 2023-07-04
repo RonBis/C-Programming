@@ -1,11 +1,25 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct STACK {
   char *vals;
   int top;
 } stack;
+
+char *strrev(char *str) {
+  char *p1, *p2;
+
+  if (!str || !*str)
+    return str;
+  for (p1 = str, p2 = str + strlen(str) - 1; p2 > p1; ++p1, --p2) {
+    *p1 ^= *p2;
+    *p2 ^= *p1;
+    *p1 ^= *p2;
+  }
+  return str;
+}
 
 void push(stack *stack, char val) { stack->vals[++stack->top] = val; }
 
@@ -39,14 +53,16 @@ int main() {
   printf("Infix expression: ");
   scanf("%s", infix_exp);
 
+  strrev(infix_exp);
+
   for (int i = 0; infix_exp[i] != '\0'; i++) {
     char c = infix_exp[i];
     // check if operand
-    if (isalnum(c)) {
+    if (isalnum(c))
       exp[exp_len++] = c;
-    } else if (c == '(') {
+    else if (c == '(')
       push(&expstack, '(');
-    } else if (c == ')') {
+    else if (c == ')') {
       while (expstack.vals[expstack.top] != '(') {
         exp[exp_len++] = pop(&expstack);
       }
@@ -71,6 +87,8 @@ int main() {
     exp[exp_len++] = pop(&expstack);
   }
   exp[exp_len] = '\0';
+
+  strrev(exp);
   printf("%s\n", exp);
 
   free(expstack.vals);
