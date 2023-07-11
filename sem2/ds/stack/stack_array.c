@@ -9,11 +9,9 @@ void push() {
     printf("Stack overflow\n");
     return;
   }
-
   int data;
   printf("Enter data: ");
   scanf("%d", &data);
-
   stack[++top] = data;
 }
 
@@ -22,7 +20,6 @@ void pop() {
     printf("Stack underflow\n");
     return;
   }
-
   printf("Popped %d\n", stack[top]);
   top--;
 }
@@ -32,7 +29,6 @@ void display() {
     printf("Stck empty.\n");
     return;
   }
-
   for (int i = 0; i <= top; i++) {
     printf("%d  ", stack[i]);
   }
@@ -42,10 +38,9 @@ void display() {
 int main() {
   printf("Enter stack size: ");
   scanf("%d", &size);
-
   stack = (int *)calloc(size, sizeof(int));
-  int choice;
 
+  int choice;
   while (1) {
     printf("\nEnter choice:\n"
            "1. Push\n"

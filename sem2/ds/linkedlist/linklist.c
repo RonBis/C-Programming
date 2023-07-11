@@ -255,19 +255,19 @@ int main() {
   int choice;
   node *head = NULL;
 
+  printf("1. Insert at beginning\n"
+         "2. Insert at end\n"
+         "3. Insert at pos\n"
+         "4. Display\n"
+         "5. Delete from start\n"
+         "6. Delete from end\n"
+         "7. Delete at pos\n"
+         "8. Concatenate another linked list\n"
+         "9. Search element\n"
+         "10. Reverse linked list\n"
+         "11. Exit\n");
   while (1) {
-    printf("\nEnter choice:\n"
-           "1. Insert at beginning\n"
-           "2. Insert at end\n"
-           "3. Insert at pos\n"
-           "4. Display\n"
-           "5. Delete from start\n"
-           "6. Delete from end\n"
-           "7. Delete at pos\n"
-           "8. Concatenate another linked list\n"
-           "9. Search element\n"
-           "10. Reverse linked list\n"
-           "11. Exit\n");
+    printf("\nEnter choice: ");
     scanf("%d", &choice);
 
     switch (choice) {
