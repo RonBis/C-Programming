@@ -26,7 +26,7 @@ void pop() {
 
 void display() {
   if (top == -1) {
-    printf("Stck empty.\n");
+    printf("Stack empty.\n");
     return;
   }
   for (int i = 0; i <= top; i++) {
@@ -41,28 +41,29 @@ int main() {
   stack = (int *)calloc(size, sizeof(int));
 
   int choice;
+  printf("1. Push\n"
+         "2. Pop\n"
+         "3. Display\n"
+         "4. Exit");
   while (1) {
-    printf("\nEnter choice:\n"
-           "1. Push\n"
-           "2. Pop\n"
-           "3. Display\n"
-           "4. Exit\n");
+    printf("\nEnter choice: ");
     scanf("%d", &choice);
 
     switch (choice) {
     case 1:
-      printf("Push:\n");
+      printf("--Push--\n");
       push();
       break;
     case 2:
-      printf("Pop:\n");
+      printf("--Pop--\n");
       pop();
       break;
     case 3:
-      printf("Display:\n");
+      printf("--Display--\n");
       display();
       break;
     case 4:
+      printf("Exiting\n");
       free(stack);
       exit(0);
     default:

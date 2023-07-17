@@ -83,6 +83,7 @@ int main() {
     return 0;
   }
   if (p1 == NULL) {
+    // insert at head
     p2->next = sum;
     sum = p2;
   } else {
