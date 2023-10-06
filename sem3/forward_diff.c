@@ -1,5 +1,40 @@
 #include <stdio.h>
 
+int _fact(int n) {
+	int fact = 1;
+	for(int i=n; i>=2; i--) {
+		fact *= i;
+	}
+	return fact;
+}
+
+double fwd_interpolate(double x, int size, double table[size][size+1]) {
+	double h = table[1][0] - table[0][0];
+	double u = (x - table[0][0]) / h;
+	
+	double res = 0;
+	for(int i=1; i<=size; i++) {
+		double t = 1;
+		// product of u terms
+		for(int j=0; j<i-1; j++) {
+			t = t*(u-j);
+		}
+		
+		// divide u term by factorial
+		t = t / _fact(i-1);
+		
+		//multiply by del(y) term
+		t = t * table[0][i];
+		
+		res += t;
+	}
+	return res;
+}
+
+double back_interpolate(double x, double table, int size) {
+
+}
+
 int main() {
 	int n;
 	printf("Number of x inputs: ");
@@ -9,8 +44,24 @@ int main() {
 	
 	// input x
 	for(int i=0; i<n; i++) {
-		printf("Input x[%d]> ", i);
-		scanf("%lf", &table[i][0]);
+		while(1) {
+			double xval;
+			printf("Input x[%d]> ", i);
+			scanf("%lf", &xval);
+			
+			if(i>=2) {
+				if((xval - table[i-1][0]) != (table[1][0] - table[0][0])) {
+				printf("Invalid interval, try again\n\n");
+					continue; // diff is not the same, retake input
+				} else {
+					table[i][0] = xval;
+					break;
+				}
+			} else {
+				table[i][0] = xval;
+				break;
+			}
+		}
 	}
 	
 	printf("\n");
@@ -41,6 +92,14 @@ int main() {
 		}
 		printf("\n");
 	}
+	
+	double x;
+	printf("\nEnter value for forward interpolation: ");
+	scanf("%lf", &x);
+	
+	// interpolation
+	x = fwd_interpolate(x, n, table);
+	printf("Result: %.4lf\n", x);
 	
 	return 0;
 }
