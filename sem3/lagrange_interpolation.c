@@ -6,8 +6,6 @@ double lagrange_interpolate(double x, int size, double table[size][2]) {
 		double x_const = table[i][0];
 		double y = table[i][1];
 		
-		printf("\nx_const: %lf, y: %lf\t", x_const, y);
-		
 		double prod = y;
 		for(int j=0; j<size; j++) {
 			if(j == i) continue;
