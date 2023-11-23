@@ -23,7 +23,7 @@ double fwd_interpolate(double x, int size, double table[size][size+1]) {
 		// divide u term by factorial
 		t = t / _fact(i-1);
 		
-		//multiply by del(y) term
+		// multiply by del(y) term
 		t = t * table[0][i];
 		
 		res += t;
@@ -31,8 +31,28 @@ double fwd_interpolate(double x, int size, double table[size][size+1]) {
 	return res;
 }
 
-double back_interpolate(double x, double table, int size) {
-
+double back_interpolate(double x, int size, double table[size][size+1]) {
+	double h = table[1][0] - table[0][0];
+	double u = (x - table[size-1][0]) / h;
+	
+	double res = 0;
+	for(int i=1; i<=size; i++) {
+		double t = 1;
+		// product of u terms
+		for(int j=0; j<i-1; j++) {
+			t = t*(u-j);
+		}
+		printf("t = %lf\n", t);
+		
+		// divide u term by factorial
+		t = t / _fact(i-1);
+		
+		// multiply by del(y) term
+		t = t * table[0][i];
+		
+		res += t;
+	}
+	return res;
 }
 
 int main() {
@@ -98,7 +118,7 @@ int main() {
 	scanf("%lf", &x);
 	
 	// interpolation
-	x = fwd_interpolate(x, n, table);
+	x = back_interpolate(x, n, table);
 	printf("Result: %.4lf\n", x);
 	
 	return 0;

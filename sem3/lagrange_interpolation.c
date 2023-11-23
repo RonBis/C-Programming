@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-double lagrange_interpolate(double x, int size, double table[size][2]) {
+double lagrange_interpolate(double x, int size, double table[][2]) {
 	double res = 0;
 	for(int i=0; i<size; i++) {
 		double x_const = table[i][0];
@@ -9,12 +9,11 @@ double lagrange_interpolate(double x, int size, double table[size][2]) {
 		double prod = y;
 		for(int j=0; j<size; j++) {
 			if(j == i) continue;
-			
-			prod *= ( x - table[j][0] )/( x_const - table[j][0] );
+			prod *= (x - table[j][0])/(x_const - table[j][0]);
 		}
-		
 		res += prod;
 	}
+	return res;
 }
 
 int main() {
@@ -43,8 +42,6 @@ int main() {
 	
 	// interpolation
 	x = lagrange_interpolate(x, n, table);
-	printf("\nResult: %lf\n", x);
-	
+	printf("Result: %lf\n", x);
 	return 0;
 }
-

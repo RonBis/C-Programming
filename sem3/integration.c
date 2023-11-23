@@ -29,7 +29,6 @@ double simpsons(double low, double high, int interval) {
     else
       multiplicant = 4;
 
-    //printf("-> %d * %lf\n", multiplicant, fx(term));
     t = t + fx(term) * multiplicant;
   }
   
@@ -50,5 +49,3 @@ int main() {
   printf("Simpson's method result: %lf\n", simpsons(low, high, interval));
   return 0;
 }
-
-
