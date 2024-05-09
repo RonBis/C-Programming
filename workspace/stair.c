@@ -58,7 +58,6 @@ void mergeSort(float arr[], int left, int right) {
 }
 
 // Function to print the array
-
 void printArray(float arr[], int n) {
   for (int i = 0; i < n; i++) {
     printf("%.2f ", arr[i]);
