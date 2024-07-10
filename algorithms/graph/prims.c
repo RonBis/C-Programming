@@ -54,7 +54,7 @@ char findMinCostConn(char src) {
 }
 
 int main() {
-  FILE *fp = fopen("./adjlist.file", "r");
+  FILE *fp = fopen("./src/adjlist.file", "r");
   adjlist = (adjconn *)malloc(sizeof(adjconn));
 
   char *lines, line[100], ch;
@@ -87,6 +87,8 @@ int main() {
   printf("Source node: ");
   scanf("%c", &source);
 
+  int minCost = 0;
+
   visited = (char *)malloc(vert_count * sizeof(char));
   visited[0] = source;
   visited_count++;
@@ -98,9 +100,12 @@ int main() {
     visited_count++;
     if (visited_count == vert_count + 1)
       break;
-    visited[i + 1] = findMinCostConn(src);
+    int c = findMinCostConn(src);
+    visited[i + 1] = c;
+    minCost += c;
   }
 
+  printf("\nMinCost: %d", minCost);
   printf("\n");
   return 0;
 }

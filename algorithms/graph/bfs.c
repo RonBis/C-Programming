@@ -34,7 +34,7 @@ char dequeue() {
 }
 
 int main() {
-    FILE *fp = fopen("./adjlist2.file", "r");
+    FILE *fp = fopen("./src/undirected2.graph", "r");
     adjlist = (adjconn *)malloc(sizeof(adjconn));
     char *visited;
     int visited_count = 0;
@@ -70,9 +70,9 @@ int main() {
             (adjconn){.src = ch, .conns = conns, .conns_count = conn_count};
     }
 
-    for (int i = 0; i < vert_count; i++) {
-        printf("src=%c, conns=%s\n", adjlist[i].src, adjlist[i].conns);
-    }
+    // for (int i = 0; i < vert_count; i++) {
+    //     printf("src=%c, conns=%s\n", adjlist[i].src, adjlist[i].conns);
+    // }
 
     char source;
     printf("Source node: ");
