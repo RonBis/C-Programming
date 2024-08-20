@@ -3,9 +3,9 @@
 #define INF 9999
 #define min(a, b) a < b ? a : b
 
-void input_graph(int vert_count, int mat[][vert_count]) {
-    for (int i = 0; i < vert_count; i++) {
-        for (int j = 0; j < vert_count; j++) {
+void input_graph(int V, int mat[][V]) {
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
             if (i == j) {
                 mat[i][j] = 0;
                 continue;
@@ -18,9 +18,9 @@ void input_graph(int vert_count, int mat[][vert_count]) {
     }
 }
 
-void show_matrix(int vert_count, int mat[][vert_count]) {
-    for (int i = 0; i < vert_count; i++) {
-        for (int j = 0; j < vert_count; j++) {
+void show_matrix(int V, int mat[][V]) {
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
             if (mat[i][j] == INF) {
                 printf("∞  ");
             } else {
@@ -31,30 +31,31 @@ void show_matrix(int vert_count, int mat[][vert_count]) {
     }
 }
 
-void floyd_warshall(int vert_count, int mat[][vert_count]) {
-    for (int i = 0; i < vert_count; i++) {
-        for (int j = 0; j < vert_count; j++) {
-            for (int k = 0; k < vert_count; k++) {
+void floyd(int V, int mat[][V]) {
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            for (int k = 0; k < V; k++) {
                 mat[j][k] = min(mat[j][k], (mat[j][i] + mat[i][k]));
             }
         }
-        printf("\n\nR%d:\n", i + 1);
-        show_matrix(vert_count, mat);
+        // printf("\n\nR%d:\n", i + 1);
+        // show_matrix(V, mat);
     }
 }
 
 int main() {
-    int vert_count;
+    int V;
     printf("Enter number of vertices: ");
-    scanf("%d", &vert_count);
+    scanf("%d", &V);
 
-    int mat[vert_count][vert_count];
-    input_graph(vert_count, mat);
+    int mat[V][V];
+    input_graph(V, mat);
 
-    printf("\nmatrix for given graph:\n");
-    show_matrix(vert_count, mat);
+    printf("\nCost matrix for given graph:\n");
+    show_matrix(V, mat);
 
-    floyd_warshall(vert_count, mat);
-    printf("This is the all pairs shortest path matrix\n");
+    printf("\nAll pairs shortest path matrix:\n");
+    floyd(V, mat);
+    show_matrix(V, mat);
     return 0;
 }

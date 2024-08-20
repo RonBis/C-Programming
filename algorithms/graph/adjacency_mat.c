@@ -1,14 +1,13 @@
-#include <stdbool.h>
 #include <stdio.h>
 
-void input_graph(int vert_count, int mat[][vert_count]) {
-    for (int i = 0; i < vert_count; i++) {
-        for (int j = 0; j < vert_count; j++) {
+void input_graph(int V, int mat[][V]) {
+    printf("-- Input graph --\n");
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
             if (i <= j) {
                 int has_edge;
-                printf("Has edge between %d and %d? ", i + 1, j + 1);
+                printf("Has edge between %d and %d? (0 means no, 1 means yes) ", i + 1, j + 1);
                 scanf("%d", &has_edge);
-
                 mat[i][j] = has_edge, mat[j][i] = has_edge;
             } else {
                 if (mat[i][j] != 1) {
@@ -20,16 +19,16 @@ void input_graph(int vert_count, int mat[][vert_count]) {
 }
 
 int main() {
-    int vert_count;
+    int V;
     printf("Enter number of vertices: ");
-    scanf("%d", &vert_count);
+    scanf("%d", &V);
 
-    int adjmat[vert_count][vert_count];
-    input_graph(vert_count, adjmat);
+    int adjmat[V][V];
+    input_graph(V, adjmat);
 
-    printf("\nFinal adjacency matrix for given graph:\n");
-    for (int i = 0; i < vert_count; i++) {
-        for (int j = 0; j < vert_count; j++) {
+    printf("\nAdjacency matrix for given graph:\n");
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
             printf("%d  ", adjmat[i][j]);
         }
         printf("\n");

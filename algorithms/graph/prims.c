@@ -27,7 +27,7 @@ bool checkIfVertInVisited(int vert_id) {
   return false;
 }
 
-char findMinCostConn(char src) {
+edge findMinCostConn(char src) {
   for (int i = 0; i < vert_count; i++) {
     if (adjlist[i].src == src) {
       // Got the edges from the source
@@ -48,13 +48,13 @@ char findMinCostConn(char src) {
         }
       }
       // found the edge with minimum cost
-      return min_cost_edge_id;
+      return (edge){ .id = min_cost_edge_id, .cost = min_cost };
     }
   }
 }
 
 int main() {
-  FILE *fp = fopen("./src/adjlist.file", "r");
+  FILE *fp = fopen("./src/adjlist2.file", "r");
   adjlist = (adjconn *)malloc(sizeof(adjconn));
 
   char *lines, line[100], ch;
@@ -74,7 +74,7 @@ int main() {
 
     edge *conns = (edge *)malloc(conn_count * sizeof(edge));
     for (int i = 0; i < conn_count; i++) {
-      conns[i] = (edge){.id = line[i * 4], .cost = line[i * 4 + 2]};
+      conns[i] = (edge){.id = line[i * 4], .cost = line[i * 4 + 2] - '0'};
     }
 
     vert_count++;
@@ -84,7 +84,7 @@ int main() {
   }
 
   char source;
-  printf("Source node: ");
+  printf("Source vertex: ");
   scanf("%c", &source);
 
   int minCost = 0;
@@ -93,6 +93,7 @@ int main() {
   visited[0] = source;
   visited_count++;
 
+  printf("-- Prim's MST --\n");
   for (int i = 0; i < visited_count; i++) {
     char src = visited[i];
     printf("%c\t", src);
@@ -100,12 +101,12 @@ int main() {
     visited_count++;
     if (visited_count == vert_count + 1)
       break;
-    int c = findMinCostConn(src);
-    visited[i + 1] = c;
-    minCost += c;
+    edge e = findMinCostConn(src);
+    visited[i + 1] = e.id;
+    minCost += e.cost;
   }
 
-  printf("\nMinCost: %d", minCost);
+  printf("\nMinimum Cost: %d", minCost);
   printf("\n");
   return 0;
 }

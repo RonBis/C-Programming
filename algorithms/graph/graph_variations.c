@@ -14,7 +14,7 @@ void input_graph(int vert_count, int mat[][vert_count]) {
         for (int j = 0; j < vert_count; j++) {
             if (i <= j) {
                 int has_edge;
-                printf("Has edge between %d and %d? ", i + 1, j + 1);
+                printf("Has edge between %d and %d? (0 means no, 1 means yes) ", i + 1, j + 1);
                 scanf("%d", &has_edge);
 
                 mat[i][j] = has_edge, mat[j][i] = has_edge;
@@ -78,7 +78,6 @@ bool is_complete_graph(int vert_count, int mat[][vert_count]) {
             }
         }
     }
-
     int prm = _fact(vert_count) / (2 * _fact(vert_count - 2));
     return edges == prm;
 }
@@ -91,7 +90,7 @@ int main() {
     int adjmat[vert_count][vert_count];
     input_graph(vert_count, adjmat);
 
-    printf("\nFinal adjacency matrix for given graph:\n");
+    printf("\nAdjacency matrix for given graph:\n");
     for (int i = 0; i < vert_count; i++) {
         for (int j = 0; j < vert_count; j++) {
             printf("%d  ", adjmat[i][j]);

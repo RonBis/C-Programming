@@ -1,46 +1,54 @@
+#include <ctype.h>
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdlib.h>
 
-void input_graph(int vert_count, int mat[][vert_count])
-{
-    for (int i = 0; i < vert_count; i++)
-    {
-        for (int j = 0; j < vert_count; j++)
-        {
-            if (i <= j)
-            {
-                int has_edge;
-                printf("Has edge between %d and %d? ", i + 1, j + 1);
-                scanf("%d", &has_edge);
+#define e(a) a + 65
+#define V 5
 
-                mat[i][j] = has_edge, mat[j][i] = has_edge;
-            }
-            else
-            {
-                if (mat[i][j] != 1)
-                {
-                    mat[i][j] = 0;
-                }
-            }
-        }
-    }
+typedef struct Node {
+    char name;
+    struct Node* next;
+} Node;
+
+Node* createNode(char data) {
+    Node* nd = (Node*)malloc(sizeof(Node));
+    nd->name = data;
+    nd->next = NULL;
+    return nd;
 }
 
-int main()
-{
-    int vert_count;
-    printf("Enter number of vertices: ");
-    scanf("%d", &vert_count);
+void insertNode(Node** head, char data) {
+    Node* nd = createNode(data);
+    nd->next = *head;
+    *head = nd;
+}
 
-    int adjmat[vert_count][vert_count];
-    input_graph(vert_count, adjmat);
-
-    printf("\nFinal adjacency matrix for given graph:\n");
-    for (int i = 0; i < vert_count; i++)
-    {
-        for (int j = 0; j < vert_count; j++)
-        {
-            printf("%d  ", adjmat[i][j]);
+int main() {
+    Node* arrlist[V];
+    char ch;
+    
+    for (int i = 0; i < V; i++) {
+        arrlist[i] = NULL;
+    }
+    
+    printf("-- Enter adjacent vertices --\n");
+    for (int i = 0; i < V; i++) {
+        printf(
+            "Vertex %c (Enter X to stop): ",
+            e(i));
+        while (1) {
+            scanf(" %c", &ch);
+            if (toupper(ch) == 'X') break;
+            insertNode(&arrlist[i], ch);
+        }
+    }
+    printf("\nAdjacency list for given graph:\n");
+    for (int i = 0; i < V; i++) {
+        Node* current = arrlist[i];
+        printf("Vertex %c: ", e(i));
+        while (current != NULL) {
+            printf("%c ", current->name);
+            current = current->next;
         }
         printf("\n");
     }

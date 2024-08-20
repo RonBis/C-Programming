@@ -1,26 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void input_graph(int vert_count, int mat[][vert_count]) {
-    for (int i = 0; i < vert_count; i++) {
-        for (int j = 0; j < vert_count; j++) {
+void input_graph(int V, int mat[][V]) {
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
             if(i == j) {
                 mat[i][j] = 0;
             }
             else if (i < j) {
                 int has_edge;
-                printf("Has edge between %d and %d? ", i, j);
+                printf("Has edge between %d and %d? (0 means no, 1 means yes) ", i, j);
                 scanf("%d", &has_edge);
-
                 mat[i][j] = has_edge, mat[j][i] = has_edge;
             }
         }
     }
 }
 
-void show_matrix(int vert_count, int mat[][vert_count]) {
-    for (int i = 0; i < vert_count; i++) {
-        for (int j = 0; j < vert_count; j++) {
+void show_matrix(int V, int mat[][V]) {
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
             printf("%d  ", mat[i][j]);
         }
         printf("\n");
@@ -59,14 +58,13 @@ int main() {
     int visited[v];
     input_graph(v, mat);
 
-    printf("\nInput graph:\n");
+    printf("\nAdjacency matrix of given graph:\n");
     show_matrix(v, mat);
 
     int start;
     printf("\nEnter dfs start vertex: ");
     scanf("%d", &start);
 
-    // 0 elements in visited array
     dfs(start, v, mat);
     printf("\n");
     return 0;
